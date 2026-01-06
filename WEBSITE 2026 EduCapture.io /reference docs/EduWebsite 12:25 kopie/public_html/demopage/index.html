@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduCapture - Van Rijles naar Rijonderwijs</title>
+    <style>
+        @font-face {
+            font-family: 'Nexa';
+            src: url('Nexa Light.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Nexa';
+            src: url('Nexa Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        :root {
+            --primary: #00b498;
+            --primary-dark: #1e413c;
+            --secondary: #1e413c;
+            --light: #ffffff;
+            --dark: #000000;
+            --gray-light: #f8f9fa;
+            --gray: #6b7280;
+            --success: #00b498;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nexa', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-dark);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.3;
+            }
+        }
+
+        header .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .logo-image {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            font-weight: 700;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--primary-dark);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            margin-top: 10px;
+            max-width: 700px;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .demo-process-section {
+            background: linear-gradient(to bottom, #f8f9fa 0%, white 100%);
+            padding: 100px 0;
+        }
+
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .process-step {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .process-step:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 180, 152, 0.1);
+        }
+
+        .process-step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .process-step-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+
+        .process-step-content {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .process-highlight {
+            background: rgba(0, 180, 152, 0.1);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 180, 152, 0.15);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .demo-offer-box {
+            background: linear-gradient(135deg, #00b498 0%, #00a087 100%);
+            color: white;
+            padding: 60px;
+            border-radius: 24px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .demo-offer-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .demo-offer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .demo-price {
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 20px 0;
+        }
+
+        .demo-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .demo-features {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .demo-feature {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+
+        .demo-feature-icon {
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+
+        .testimonial {
+            background-color: var(--gray-light);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+            border: 1px solid #e5e7eb;
+        }
+
+        .testimonial-text {
+            font-size: 1.125rem;
+            margin-bottom: 24px;
+            line-height: 1.7;
+            color: var(--primary-dark);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .testimonial:before {
+            content: '"';
+            font-size: 6rem;
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            color: var(--primary);
+            opacity: 0.15;
+            font-weight: 800;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .stat-box {
+            background-color: white;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 180, 152, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .cta-section {
+            background-color: var(--primary-dark);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            border-bottom: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 24px;
+            font-size: 1.125rem;
+            letter-spacing: -0.01em;
+        }
+
+        .button-large {
+            padding: 20px 60px;
+            font-size: 1.25rem;
+        }
+
+        .button:hover {
+            background-color: #00a087;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 180, 152, 0.4);
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .footer-logo {
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .footer-info {
+            margin-top: 40px;
+            font-size: 0.875rem;
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e5e7eb;
+            font-weight: 500;
+        }
+
+        .highlight-box {
+            background-color: rgba(0, 180, 152, 0.08);
+            border-left: 4px solid var(--primary);
+            padding: 24px;
+            margin: 40px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box h3 {
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+        }
+
+        p {
+            color: var(--primary-dark);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            color: var(--primary-dark);
+            line-height: 1.8;
+            margin-left: 20px;
+        }
+
+        /* Logo SVG Styling */
+        .logo-svg {
+            width: 50px;
+            height: 50px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .process-timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-offer-box {
+                padding: 40px 20px;
+            }
+
+            .demo-price {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="hero-badge">Professioneel Rijonderwijs</div>
+            <h1>EduCapture</h1>
+            <h1>Van Rijles naar Rijonderwijs</h1>
+            <p class="tagline">Transformeer uw rijschool met hoogwaardige educatieve technologie</p>
+        </div>
+    </header>
+
+    <section class="demo-process-section">
+        <div class="container">
+            <h2 style="text-align: center;">Hoe Werkt Het?</h2>
+            <p style="text-align: center; font-size: 1.25rem; color: var(--gray); max-width: 800px; margin: 0 auto;">
+                Uw weg naar professioneel rijonderwijs in drie stappen
+            </p>
+
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="process-step-number">1</div>
+                    <h3 class="process-step-title">Persoonlijk Gesprek</h3>
+                    <div class="process-step-content">
+                        <p><strong>Kennismaking & Behoefteanalyse</strong></p>
+                        <p>We plannen een fysieke afspraak om uw specifieke wensen en behoeften te bespreken</p>
+                    </div>
+                    <div class="process-highlight">Op Maat Advies</div>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-step-number">2</div>
+                    <h3 class="process-step-title">Kosteloze Proefperiode</h3>
+                    <div class="process-step-content">
+                        <p><strong>Ervaar De Voordelen</strong></p>
+                        <p>Start na overeenstemming met een kosteloze proefperiode om de gekozen modules zelf in de
+                            praktijk te ervaren</p>
+                    </div>
+                    <div class="process-highlight">Geen Risico</div>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-step-number">3</div>
+                    <h3 class="process-step-title">Volledige Implementatie</h3>
+                    <div class="process-step-content">
+                        <p><strong>Professionele Installatie</strong></p>
+                        <p>Na de proefperiode zorgen wij voor een complete, professionele installatie in uw lesauto's
+                        </p>
+                    </div>
+                    <div class="process-highlight">Volledig Ontzorgd</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="demo-offer-box">
+                <div class="demo-offer-content">
+                    <h2 style="color: white; margin-bottom: 10px;">EDUBOX Hardware Unit</h2>
+                    <div class="demo-subtitle">Eenmalige aanschaf per EDUBOX</div>
+
+                    <div class="demo-features">
+                        <div class="demo-feature">
+                            <span class="demo-feature-icon">✓</span>
+                            <span>Volledige hardware unit inclusief installatie</span>
+                        </div>
+                        <div class="demo-feature">
+                            <span class="demo-feature-icon">✓</span>
+                            <span>1 camera setup standaard inbegrepen</span>
+                        </div>
+                        <div class="demo-feature">
+                            <span class="demo-feature-icon">✓</span>
+                            <span>Uitbreidbaar tot 4 lenzen</span>
+                        </div>
+                        <div class="demo-feature">
+                            <span class="demo-feature-icon">✓</span>
+                            <span>Live App inbegrepen</span>
+                        </div>
+                        <div class="demo-feature">
+                            <span class="demo-feature-icon">✓</span>
+                            <span>Volledige installatie per lesauto inbegrepen</span>
+                        </div>
+                    </div>
+
+                    <a href="https://calendly.com/educapture/kennismaking" target="_blank" class="button button-large"
+                        style="background: white; color: var(--primary);">Plan een Afspraak</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>De Live App</h2>
+
+            <div class="highlight-box">
+                <h3>Altijd Toegang tot Uw Camerasysteem</h3>
+                <p>Bij de EDUBOX hardware is de <strong>Live App</strong> inbegrepen. Het hardware systeem is ontworpen
+                    om <strong>onafhankelijk te draaien</strong> van de leerling & instructeurs web omgeving.</p>
+                <p>Dit betekent dat u altijd bij uw camerasysteem kunt, en live beelden in de auto kunt bekijken via de
+                    "Live App" - ongeacht welke softwaremodules u gebruikt.</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Onafhankelijk Systeem</h3>
+                    <p>De Live App werkt volledig onafhankelijk van het softwareplatform. Uw camerasysteem is altijd
+                        bereikbaar.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📹</div>
+                    <h3>Live Beelden</h3>
+                    <p>Bekijk realtime beelden vanuit uw lesauto's, waar u ook bent. Directe toegang tot alle camera's.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Software & Licenties</h2>
+
+            <div class="highlight-box">
+                <h3>Maatwerk voor Uw Rijschool</h3>
+                <p>Voor het softwareplatform werken we met <strong>verschillende licentiemodellen</strong>, afhankelijk
+                    van de gewenste modules en het aantal gebruikers binnen uw rijschool.</p>
+                <p>Dit is altijd een stukje <strong>maatwerk</strong>. Om een passend voorstel te kunnen doen, plannen
+                    we graag een fysieke afspraak met u.</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Op Maat Gemaakt</h3>
+                    <p>Elk rijschool is anders. Wij bekijken samen welke modules het beste passen bij uw specifieke
+                        situatie en wensen.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🧪</div>
+                    <h3>Kosteloze Proefperiode</h3>
+                    <p>Na overeenstemming starten we altijd met een kosteloze proefperiode, zodat u de voordelen van de
+                        gekozen modules eerst zelf in de praktijk kunt ervaren.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Flexibele Gebruikers</h3>
+                    <p>Het licentiemodel wordt afgestemd op het aantal instructeurs en leerlingen binnen uw rijschool.
+                        Groei op uw eigen tempo.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Persoonlijke Begeleiding</h3>
+                    <p>Tijdens een fysieke afspraak bespreken we alle mogelijkheden en stellen we samen het ideale
+                        pakket voor u samen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Veelgestelde Vragen</h2>
+
+            <div class="highlight-box">
+                <h3>Wat is inbegrepen bij de EDUBOX?</h3>
+                <p>De eenmalige aanschaf per EDUBOX omvat de volledige hardware unit, professionele installatie in uw
+                    lesauto, 1 camera setup, en de Live App. De camera setup is uitbreidbaar tot 4 lenzen.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Hoe werkt de proefperiode?</h3>
+                <p>Na een persoonlijk gesprek en overeenstemming over de gewenste modules, start u met een kosteloze
+                    proefperiode. Zo kunt u de voordelen van het systeem eerst zelf in de praktijk ervaren voordat u een
+                    definitieve keuze maakt.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Kan ik altijd bij mijn camerasysteem?</h3>
+                <p>Ja! Het hardware systeem draait onafhankelijk van de leerling & instructeurs web omgeving. Via de
+                    Live App heeft u altijd toegang tot uw camerasysteem en kunt u live beelden bekijken.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Hoe snel kan ik starten?</h3>
+                <p>Na een fysieke afspraak en overeenstemming kunnen wij de installatie snel verzorgen. Plan vandaag nog
+                    een gesprek om uw mogelijkheden te bespreken.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Privacy & Wetgeving</h3>
+                <p>Ons systeem is als eerste in Nederland volledig AVG-proof en valt compleet binnen de wet- &
+                    regelgeving. Kentekens en gezichten worden automatisch geblurd en er wordt geen audio opgenomen. Uw
+                    privacy en die van uw studenten is 100% gewaarborgd.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Laten We Kennismaken</h2>
+            <p style="font-size: 1.25rem; margin-bottom: 40px;">Plan een fysieke afspraak en ontdek welke oplossing het
+                beste past bij uw rijschool</p>
+            <a href="https://calendly.com/educapture/kennismaking" target="_blank" class="button button-large">Plan een
+                Afspraak</a>
+            <p style="margin-top: 20px; opacity: 0.9;">Of bel direct: +31 6 80227810</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <span>EduCapture</span>
+            </div>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📞</span>
+                    <span>+31 6 80227810</span>
+                </div>
+                <div class="contact-item">
+                    <span>✉️</span>
+                    <span>hello@educapture.io</span>
+                </div>
+                <div class="contact-item">
+                    <span>🌐</span>
+                    <span>www.educapture.io</span>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <p>&copy; </p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

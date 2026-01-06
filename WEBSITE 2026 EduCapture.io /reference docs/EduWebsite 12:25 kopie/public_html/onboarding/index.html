@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduCapture - Rijschool van de Maand Onboarding</title>
+    <style>
+        @font-face {
+            font-family: 'Nexa';
+            src: url('Nexa Light.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Nexa';
+            src: url('Nexa Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        
+        :root {
+            --primary: #00b498;
+            --primary-dark: #1e413c;
+            --secondary: #1e413c;
+            --light: #ffffff;
+            --dark: #000000;
+            --gray-light: #f8f9fa;
+            --gray: #6b7280;
+            --success: #00b498;
+            --accent: #ff6b35;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nexa', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-dark);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            font-weight: 300;
+            font-size: 14pt;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 15mm;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20mm 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 10mm;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+        
+        header .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            font-weight: 700;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--primary-dark);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            margin-top: 10px;
+            max-width: 100%;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+        
+        section {
+            padding: 15mm 0;
+            border-bottom: 1px solid #e5e7eb;
+            page-break-inside: avoid;
+        }
+
+        .intro-section {
+            background: linear-gradient(to bottom, #f8f9fa 0%, white 100%);
+            padding: 20mm 0;
+        }
+
+        .what-section {
+            background: linear-gradient(135deg, rgba(0,180,152,0.05) 0%, white 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .benefit-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            page-break-inside: avoid;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 180, 152, 0.15);
+            border-color: var(--primary);
+        }
+        
+        .benefit-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .process-step {
+            background: white;
+            border-radius: 12px;
+            padding: 15px 10px;
+            position: relative;
+            border: 2px solid var(--primary);
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        .process-step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .process-step-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+        }
+
+        .process-step-content {
+            color: var(--gray);
+            font-size: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .deliverables-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            page-break-inside: avoid;
+        }
+        
+        .deliverables-table th {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .deliverables-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+            background-color: white;
+            font-size: 0.85rem;
+            vertical-align: top;
+        }
+        
+        .deliverables-table tr:hover td {
+            background-color: #f9fafb;
+        }
+
+        .deliverable-icon {
+            font-size: 1.2rem;
+            margin-right: 8px;
+        }
+        
+        .testimonial {
+            background-color: var(--gray-light);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 20px 0;
+            position: relative;
+            border: 1px solid #e5e7eb;
+            page-break-inside: avoid;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: var(--primary-dark);
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+            text-align: right;
+        }
+        
+        .testimonial:before {
+            content: '"';
+            font-size: 5rem;
+            position: absolute;
+            top: -10px;
+            left: 25px;
+            color: var(--primary);
+            opacity: 0.15;
+            font-weight: 800;
+        }
+
+        .promise-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            text-align: center;
+            padding: 25mm 0;
+            border-bottom: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .promise-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+        }
+        
+        .promise-section h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .button-large {
+            padding: 18px 50px;
+            font-size: 1.2rem;
+        }
+        
+        .button:hover {
+            background-color: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 20mm 0;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .footer-info {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #9ca3af;
+            line-height: 1.4;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #e5e7eb;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .highlight-box {
+            background-color: rgba(0, 180, 152, 0.08);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            page-break-inside: avoid;
+        }
+
+        .highlight-box h3 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .info-block {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            page-break-inside: avoid;
+        }
+
+        .info-block h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .info-block p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .info-block ul {
+            margin-left: 20px;
+            font-size: 0.95rem;
+        }
+
+        .onboarding-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .onboarding-step {
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+            page-break-inside: avoid;
+            transition: all 0.3s ease;
+        }
+
+        .onboarding-step:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 180, 152, 0.15);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .onboarding-step h4 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .onboarding-step p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--gray);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent) 0%, #ff8c42 100%);
+            color: white;
+            text-align: center;
+            padding: 25mm 0;
+            border-bottom: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+        
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        p {
+            color: var(--primary-dark);
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+        
+        ul {
+            color: var(--primary-dark);
+            line-height: 1.8;
+            margin-left: 25px;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .section-divider {
+            text-align: center;
+            margin: 20px 0;
+            color: var(--gray);
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+        
+        /* Print-specific styles */
+        @media print {
+            @page {
+                size: A4;
+                margin: 15mm;
+            }
+            
+            body {
+                font-size: 11pt;
+                line-height: 1.4;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .container {
+                padding: 0;
+                max-width: 100%;
+                margin: 0;
+            }
+            
+            header {
+                padding: 8mm 0;
+                margin-bottom: 5mm;
+                page-break-after: always;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 8px;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+                page-break-after: avoid;
+                page-break-before: avoid;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+                margin-bottom: 6px;
+                page-break-after: avoid;
+            }
+            
+            h4 {
+                font-size: 1.1rem;
+                margin-bottom: 5px;
+            }
+            
+            section {
+                padding: 6mm 0;
+                margin-bottom: 4mm;
+            }
+            
+            .intro-section {
+                page-break-after: always;
+            }
+            
+            .what-section {
+                page-break-after: always;
+            }
+            
+            /* Waarom meedoen sectie - eigen pagina */
+            section:nth-of-type(3) {
+                page-break-before: always;
+                page-break-after: always;
+            }
+            
+            /* Hoe werkt het proces sectie - eigen pagina */
+            section:nth-of-type(4) {
+                page-break-before: always;
+                page-break-after: always;
+            }
+            
+            /* Wat je ontvangt sectie - eigen pagina */
+            section:nth-of-type(5) {
+                page-break-before: always;
+                page-break-after: always;
+            }
+            
+            .process-timeline {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 4mm;
+                margin-top: 5mm;
+            }
+            
+            .process-step {
+                padding: 6mm 4mm;
+                margin-bottom: 3mm;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5mm;
+                margin-top: 5mm;
+            }
+            
+            .benefit-card {
+                padding: 6mm;
+                margin-bottom: 3mm;
+            }
+            
+            .deliverables-table {
+                font-size: 10pt;
+                margin: 5mm 0;
+            }
+            
+            .deliverables-table th,
+            .deliverables-table td {
+                padding: 3mm;
+            }
+            
+            .highlight-box {
+                padding: 5mm;
+                margin: 4mm 0;
+                page-break-inside: avoid;
+            }
+
+            .info-block {
+                padding: 6mm;
+                margin: 5mm 0;
+                page-break-inside: avoid;
+            }
+
+            .onboarding-steps {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 5mm;
+                margin: 5mm 0;
+                page-break-inside: avoid;
+            }
+
+            .onboarding-step {
+                padding: 6mm 4mm;
+                margin-bottom: 3mm;
+                page-break-inside: avoid;
+            }
+            
+            .testimonial {
+                padding: 6mm;
+                margin: 5mm 0;
+            }
+            
+            .promise-section {
+                padding: 8mm 0;
+                page-break-before: always;
+            }
+            
+            .cta-section {
+                padding: 8mm 0;
+                page-break-before: always;
+            }
+            
+            footer {
+                padding: 5mm 0;
+                page-break-before: always;
+            }
+            
+            .button {
+                background-color: var(--accent) !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            p {
+                margin-bottom: 4mm;
+                orphans: 2;
+                widows: 2;
+            }
+            
+            ul {
+                margin-bottom: 4mm;
+            }
+            
+            li {
+                margin-bottom: 2mm;
+            }
+            
+            /* Ensure colors print correctly */
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .process-timeline { 
+                grid-template-columns: 1fr; 
+            }
+            .benefits-grid { 
+                grid-template-columns: 1fr; 
+            }
+            .contact-info { 
+                flex-direction: column; 
+                gap: 15px; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="hero-badge">Exclusief Onboarding Programma</div>
+            <h1>EduCapture</h1>
+            <h1>Word onze 'Rijschool van de Maand'</h1>
+            <p class="tagline">Welkom in de toekomst van rijschoolonderwijs</p>
+        </div>
+    </header>
+    
+    <section class="intro-section">
+        <div class="container">
+            <h2>Wat houdt 'Rijschool van de Maand' in?</h2>
+            
+            <div class="info-block">
+                <h3>Spotlight Positie</h3>
+                <p>Als nieuwe EduCapture-partner krijg je direct een plek in onze spotlight. We maken van jouw onboarding een inspirerend promotiemoment dat jouw rijschool in de kijker zet.</p>
+            </div>
+            
+            <div class="info-block">
+                <h3>Studio Onboarding</h3>
+                <p>We nodigen je uit in onze podcast garage, werkruimte & studio voor een uitgebreid onboardingmoment.</p>
+            </div>
+
+            <div class="onboarding-steps">
+                <div class="onboarding-step">
+                    <div class="step-number">1</div>
+                    <h4>EDUBOX Installatie</h4>
+                    <p>De EDUBOX wordt professioneel geïnstalleerd in jouw lesauto. Je auto parkeert veilig binnen in onze studio tijdens het hele proces.</p>
+                </div>
+
+                <div class="onboarding-step">
+                    <div class="step-number">2</div>
+                    <h4>Interview & Video Opname</h4>
+                    <p>Voor onze founder partners doen we een echt interview op ons podcast studio, niet alleen een korte introductievideo. 
+                </div>
+
+                <div class="onboarding-step">
+                    <div class="step-number">3</div>
+                    <h4>Live Demonstratie</h4>
+                    <p>Samen laten we zien hoe EduCapture werkt in de praktijk — en wat het jou oplevert. Je ervaart direct de voordelen van onze technologie.</p>
+                </div>
+            </div>
+            
+            <div class="info-block">
+                <h3>Promotie Pakket</h3>
+                <p>Daarna maken we van jouw onboarding een inspirerend promotiemoment:</p>
+                <ul>
+                    <li>Een professioneel gemonteerde video over jouw rijschool</li>
+                    <li>Een verhaal op ons platform waarin je in de kijker staat</li>
+                    <li>Een vermelding op LinkedIn, met tag en verwijzing naar jouw bedrijf</li>
+                    <li>Een social media snippet die je zelf kunt delen</li>
+                    <li>Een webwidget waarmee je aan leerlingen laat zien dat je officieel EduCapture-partner bent</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="what-section">
+        <div class="container">
+            <h2>Waarom meedoen?</h2>
+            <p style="font-size: 1.2rem; color: var(--gray); margin-bottom: 25px; font-weight: 500;">
+                Met EduCapture krijg je meer dan technologie — je krijgt een compleet groeiplatform:
+            </p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">A</div>
+                    <h3>AI-analyse van rijlessen</h3>
+                    <p>Voor betere begeleiding en inzicht in leerlingprestaties</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">I</div>
+                    <h3>Inzicht in rijgedrag</h3>
+                    <p>Data die helpt om je lessen te verbeteren en leerlingen beter te coachen</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">V</div>
+                    <h3>Meer zichtbaarheid</h3>
+                    <p>Online promotie via onze maandelijkse spotlight campagne</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">M</div>
+                    <h3>Marketing ondersteuning</h3>
+                    <p>Van ons marketingteam om jouw verhaal te delen</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Hoe werkt het onboardingproces?</h2>
+            
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="process-step-number">1</div>
+                    <h3 class="process-step-title">Aanmelding</h3>
+                    <div class="process-step-content">Via ons online formulier</div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-number">2</div>
+                    <h3 class="process-step-title">Contactmoment</h3>
+                    <div class="process-step-content">Met ons onboardingteam</div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-number">3</div>
+                    <h3 class="process-step-title">Studio Bezoek</h3>
+                    <div class="process-step-content">Auto parkeert in onze podcast garage</div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-number">4</div>
+                    <h3 class="process-step-title">Interview</h3>
+                    <div class="process-step-content">Video-opname voor de auto in studio</div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-step-number">5</div>
+                    <h3 class="process-step-title">Publicatie</h3>
+                    <div class="process-step-content">Promotie als "Rijschool van de Maand"</div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 20px; font-style: italic; color: var(--gray);">
+                Na afloop ontvang je toegang tot je persoonlijke dashboard, waarmee je direct jouw videodata en analyses kunt bekijken.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Wat je ontvangt</h2>
+            
+            <div class="table-responsive">
+                <table class="deliverables-table">
+                    <thead>
+                        <tr>
+                            <th>Onderdeel</th>
+                            <th>Beschrijving</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="deliverable-icon">V</span><strong>Video</strong></td>
+                            <td>Professioneel opgenomen en gemonteerd mini-interview + installatiebeelden</td>
+                        </tr>
+                        <tr>
+                            <td><span class="deliverable-icon">P</span><strong>Platform Verhaal</strong></td>
+                            <td>Promotieverhaal op ons EduCapture platform</td>
+                        </tr>
+                        <tr>
+                            <td><span class="deliverable-icon">L</span><strong>LinkedIn-post</strong></td>
+                            <td>Post met jouw naam en tag, gedeeld via ons hoofdkanaal</td>
+                        </tr>
+                        <tr>
+                            <td><span class="deliverable-icon">S</span><strong>Social media kit</strong></td>
+                            <td>Kant-en-klare visuals en teksten om zelf te delen</td>
+                        </tr>
+                        <tr>
+                            <td><span class="deliverable-icon">W</span><strong>Webwidget</strong></td>
+                            <td>Badge voor jouw website met "Officiële EduCapture-partner"</td>
+                        </tr>
+                        <tr>
+                            <td><span class="deliverable-icon">D</span><strong>Dashboard</strong></td>
+                            <td>Volledige toegang tot jouw rijlesdata en analyses</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="promise-section">
+        <div class="container">
+            <h2>Onze belofte</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 25px; color: white; font-weight: 500;">
+               Wij geloven in het potentieel van technologie om mensen te versterken, niet te vervangen.
+            </p>
+            <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; line-height: 1.6;">
+                Daarom is EduCapture ontworpen om instructeurs te versterken, niet te automatiseren.<br>
+                Samen bouwen we aan een nieuw tijdperk in rijopleiding — slim, veilig en leerlinggericht.
+            </p>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <h2>Doe mee</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 30px; color: white; font-weight: 500;">
+                Wil jij de volgende Rijschool van de Maand worden?
+            </p>
+            <a href="mailto:partners@educapture.io" class="button button-large">Meld je nu aan</a>
+            <p style="margin-top: 20px; opacity: 0.9; color: white; font-size: 1.1rem;">
+                www.educapture.io/rijschool-van-de-maand<br>
+                of stuur een e-mail naar partners@educapture.io
+            </p>
+            <p style="margin-top: 15px; font-size: 1.2rem; color: white; font-weight: 500;">
+                Samen maken we jouw rijschool zichtbaar én toekomstklaar.
+            </p>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <span>EduCapture</span>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>Tel:</span>
+                    <span>+31 6 80227810</span>
+                </div>
+                <div class="contact-item">
+                    <span>Email:</span>
+                    <span>partners@educapture.io</span>
+                </div>
+                <div class="contact-item">
+                    <span>Web:</span>
+                    <span>www.educapture.io</span>
+                </div>
+            </div>
+            
+            <div class="footer-info">
+                <p>&copy; 2024 EduCapture. Alle rechten voorbehouden.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

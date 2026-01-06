@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduCapture Student Platform - Ontdek de Studenten Ervaring</title>
+    <style>
+        @font-face {
+            font-family: 'Nexa';
+            src: url('Nexa Light.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Nexa';
+            src: url('Nexa Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        
+        :root {
+            --primary: #00b498;
+            --primary-dark: #1e413c;
+            --secondary: #1e413c;
+            --light: #ffffff;
+            --dark: #000000;
+            --gray-light: #f8f9fa;
+            --gray: #6b7280;
+            --success: #00b498;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nexa', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-dark);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            font-weight: 300;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+        
+        header .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            display: inline-block;
+            font-weight: 700;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--primary-dark);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            margin-top: 15px;
+            max-width: 800px;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+        
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .intro-section {
+            background: linear-gradient(to bottom, #f8f9fa 0%, white 100%);
+            padding: 100px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 180, 152, 0.15);
+            border-color: var(--primary);
+        }
+        
+        .feature-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .feature-description {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .button-large {
+            padding: 22px 50px;
+            font-size: 1.3rem;
+        }
+
+        .highlight-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .info-item {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .info-item h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .info-item p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-item span:first-child {
+            font-weight: 700;
+        }
+
+        .footer-info {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div style="text-align: right; margin-bottom: 20px;">
+                <a href="/" class="button" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; font-size: 0.9rem;">← Terug naar Home</a>
+            </div>
+            <div class="hero-badge">Ontdek Hoe We Leerlingen Werven</div>
+            <h1>EduCapture Student Platform</h1>
+            <p class="tagline">Zie hoe wij actief leerlingen werven voor uw rijschool via ons student platform</p>
+        </div>
+    </header>
+
+    <section class="intro-section">
+        <div class="container">
+            <h2 style="text-align: center;">Hoe Wij Leerlingen Werven Voor Uw Rijschool</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: var(--gray); max-width: 800px; margin: 0 auto 60px;">
+                Het EduCapture Student Platform is niet alleen een leermiddel, maar ook een krachtig marketing instrument. 
+                Wij werven actief leerlingen die op zoek zijn naar moderne, technologie-gedreven rijopleidingen.
+            </p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">1</div>
+                    <div class="feature-title">Landelijke Marketing Campagnes</div>
+                    <div class="feature-description">
+                        Wij voeren professionele marketingcampagnes uit die leerlingen aantrekken die op zoek zijn naar innovatieve rijopleidingen.
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">2</div>
+                    <div class="feature-title">Gekwalificeerde Leerlingen</div>
+                    <div class="feature-description">
+                        Leerlingen die zich aanmelden via ons platform zijn al geïnteresseerd in technologie en moderne leermethoden.
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">3</div>
+                    <div class="feature-title">Directe Koppeling</div>
+                    <div class="feature-description">
+                        Geworven leerlingen worden direct gekoppeld aan partner-rijscholen in hun regio voor een naadloze ervaring.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 style="text-align: center;">Wat U Zult Ontdekken</h2>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <h4>Intuïtieve Interface</h4>
+                    <p>De gebruiksvriendelijke interface die studenten helpt snel hun weg te vinden en de juiste informatie te vinden.</p>
+                </div>
+                
+                <div class="info-item">
+                    <h4>Persoonlijke Feedback</h4>
+                    <p>Hoe AI-gegenereerde feedback studenten helpt hun rijvaardigheid stap voor stap te verbeteren.</p>
+                </div>
+                
+                <div class="info-item">
+                    <h4>Motivatie Elementen</h4>
+                    <p>Gamification en voortgangsindicatoren die studenten motiveren om door te gaan met hun opleiding.</p>
+                </div>
+                
+                <div class="info-item">
+                    <h4>Mobiele Ervaring</h4>
+                    <p>Hoe studenten het platform gebruiken op hun telefoon en tablet voor optimale toegankelijkheid.</p>
+                </div>
+                
+                <div class="info-item">
+                    <h4>Leerling Werving</h4>
+                    <p>Hoe het platform leerlingen aantrekt die specifiek op zoek zijn naar moderne, technologie-gedreven rijopleidingen.</p>
+                </div>
+                
+                <div class="info-item">
+                    <h4>Integratie</h4>
+                    <p>Hoe het platform naadloos integreert met uw instructeur dashboard voor een complete ervaring.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ervaar Het Zelf</h2>
+            <p>
+                Neem een kijkje op het EduCapture Student Platform en ontdek hoe uw studenten 
+                de technologie ervaren die hun rijopleiding transformeert.
+            </p>
+            
+            <div class="highlight-box">
+                <h3>Het Echte Platform</h3>
+                <p>
+                    Dit is het echte EduCapture Student Platform waar leerlingen zich aanmelden en waar wij actief 
+                    marketingcampagnes voeren om nieuwe leerlingen aan te trekken voor partner-rijscholen.
+                </p>
+            </div>
+            
+            <a href="https://educapturestudent.com" target="_blank" class="button button-large">
+                Bezoek EduCapture Student Platform
+            </a>
+            
+            <p style="margin-top: 30px; opacity: 0.9; font-size: 1rem;">
+                Opent in een nieuw tabblad - neem uw tijd om rond te kijken
+            </p>
+        </div>
+    </section>
+
+
+
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>Tel:</span>
+                    <span>+31 6 80227810</span>
+                </div>
+                <div class="contact-item">
+                    <span>Email:</span>
+                    <span>hello@educapture.io</span>
+                </div>
+                <div class="contact-item">
+                    <span>Web:</span>
+                    <span>https://educapture.io</span>
+                </div>
+            </div>
+            
+            <div class="footer-info">
+                <p>&copy; 2025 EduCapture B.V. i.o. | Een onderneming van J.Greenfields B.V. J.Greenfields B.V. | KVK: 97941468 | Pinksterbloem 35, 8607 DW Sneek | Contact: hello@educapture.io +31 6 80227810 | https://educapture.io</p>
+                <p style="margin-top: 10px;"><a href="/privacy-terms.html" style="color: #00b498; text-decoration: none;">Privacy Policy & Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

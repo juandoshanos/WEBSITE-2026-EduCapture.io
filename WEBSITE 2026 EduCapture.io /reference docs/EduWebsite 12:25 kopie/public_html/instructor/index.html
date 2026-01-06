@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduCapture Instructor - AI-Powered Rijopleiding Platform</title>
+    <style>
+        @font-face {
+            font-family: 'Nexa';
+            src: url('Nexa Light.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Nexa';
+            src: url('Nexa Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        
+        :root {
+            --primary: #00b498;
+            --primary-dark: #1e413c;
+            --secondary: #1e413c;
+            --light: #ffffff;
+            --dark: #000000;
+            --gray-light: #f8f9fa;
+            --gray: #6b7280;
+            --success: #00b498;
+            --blue: #3b82f6;
+            --purple: #8b5cf6;
+            --teal: #14b8a6;
+            --orange: #f97316;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nexa', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-dark);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            font-weight: 300;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 25px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .language-toggle:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+        
+        header .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            display: inline-block;
+            font-weight: 700;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--primary-dark);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            margin-top: 15px;
+            max-width: 800px;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+        
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .features-section {
+            background: linear-gradient(to bottom, #f8f9fa 0%, white 100%);
+            padding: 100px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 180, 152, 0.15);
+            border-color: var(--primary);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .icon-video {
+            background: linear-gradient(135deg, var(--blue) 0%, #1d4ed8 100%);
+        }
+
+        .icon-ai {
+            background: linear-gradient(135deg, var(--purple) 0%, #7c3aed 100%);
+        }
+
+        .icon-dashboard {
+            background: linear-gradient(135deg, var(--teal) 0%, #0d9488 100%);
+        }
+
+        .icon-highlights {
+            background: linear-gradient(135deg, var(--orange) 0%, #ea580c 100%);
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .feature-description {
+            color: var(--gray);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .button-large {
+            padding: 22px 50px;
+            font-size: 1.3rem;
+        }
+
+        .highlight-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .benefits-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .benefit-item {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .benefit-item h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .benefit-item p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-item span:first-child {
+            font-weight: 700;
+        }
+
+        .footer-info {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .lang-nl {
+            display: block;
+        }
+
+        .lang-en {
+            display: none;
+        }
+
+        body.lang-en .lang-nl {
+            display: none;
+        }
+
+        body.lang-en .lang-en {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .language-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="language-toggle" onclick="toggleLanguage()">EN</a>
+    
+    <header>
+        <div class="container">
+            <div style="text-align: right; margin-bottom: 20px;">
+                <a href="https://educapture.io" class="button lang-nl" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; font-size: 0.9rem;">← Terug naar Home</a>
+                <a href="https://educapture.io" class="button lang-en" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; font-size: 0.9rem;">← Back to Home</a>
+            </div>
+            <div class="hero-badge lang-nl">Welkom bij EduCapture</div>
+            <div class="hero-badge lang-en">Welcome to EduCapture</div>
+            <h1 class="lang-nl">Geavanceerde AI-technologie die transformeert hoe je lesgeeft</h1>
+            <h1 class="lang-en">Advanced AI Technology That Transforms How You Teach</h1>
+            <p class="tagline lang-nl">Ontdek hoe kunstmatige intelligentie je rijopleiding naar een hoger niveau tilt met objectieve feedback en gedetailleerde inzichten voor je leerlingen</p>
+            <p class="tagline lang-en">Discover how artificial intelligence elevates your driving instruction to the next level with objective feedback and detailed insights for your students</p>
+            
+            <a href="https://instructoreducapture.vercel.app/login" target="_blank" class="button button-large" style="margin-top: 40px;">
+                <span class="lang-nl">Log in op je Dashboard</span>
+                <span class="lang-en">Log in to Your Dashboard</span>
+            </a>
+        </div>
+    </header>
+
+    <section class="features-section">
+        <div class="container">
+            <h2 style="text-align: center;" class="lang-nl">Jouw Krachtige Instructeur Platform</h2>
+            <h2 style="text-align: center;" class="lang-en">Your Powerful Instructor Platform</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: var(--gray); max-width: 800px; margin: 0 auto 60px;" class="lang-nl">
+                EduCapture combineert geavanceerde AI-technologie met professionele rijopleiding om je de beste tools te bieden voor je leerlingen
+            </p>
+            <p style="text-align: center; font-size: 1.2rem; color: var(--gray); max-width: 800px; margin: 0 auto 60px;" class="lang-en">
+                EduCapture combines advanced AI technology with professional driving instruction to provide you with the best tools for your students
+            </p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon icon-video">📹</div>
+                    <div class="feature-title lang-nl">Video Les Analyse</div>
+                    <div class="feature-title lang-en">Video Lesson Analysis</div>
+                    <div class="feature-description lang-nl">
+                        Elke les wordt automatisch opgenomen van buiten de auto (privacy-beschermd) en geanalyseerd door onze AI voor objectieve inzichten.
+                    </div>
+                    <div class="feature-description lang-en">
+                        Every lesson is automatically recorded from outside the car (privacy-protected) and analyzed by our AI for objective insights.
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-ai">🧠</div>
+                    <div class="feature-title lang-nl">AI Prestatie Inzichten</div>
+                    <div class="feature-title lang-en">AI Performance Insights</div>
+                    <div class="feature-description lang-nl">
+                        Krijg objectieve feedback over sturen, snelheidscontrole en besluitvorming van je leerlingen gebaseerd op data, niet op gevoel.
+                    </div>
+                    <div class="feature-description lang-en">
+                        Get objective feedback on steering, speed control, and decision-making from your students based on data, not feelings.
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-dashboard">📊</div>
+                    <div class="feature-title lang-nl">Instructeur Dashboard</div>
+                    <div class="feature-title lang-en">Instructor Dashboard</div>
+                    <div class="feature-description lang-nl">
+                        Volg de vooruitgang van al je leerlingen met gedetailleerde analyses en zie precies waar ze staan in hun rijopleiding.
+                    </div>
+                    <div class="feature-description lang-en">
+                        Track the progress of all your students with detailed analyses and see exactly where they stand in their driving education.
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-highlights">▶️</div>
+                    <div class="feature-title lang-nl">Les Hoogtepunten</div>
+                    <div class="feature-title lang-en">Lesson Highlights</div>
+                    <div class="feature-description lang-nl">
+                        Bekijk belangrijke momenten en fouten van je leerlingen om gerichte feedback te geven en hun leerproces te versnellen.
+                    </div>
+                    <div class="feature-description lang-en">
+                        Review key moments and mistakes from your students to provide targeted feedback and accelerate their learning process.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits-section">
+        <div class="container">
+            <h2 style="text-align: center;" class="lang-nl">Waarom EduCapture voor Instructeurs?</h2>
+            <h2 style="text-align: center;" class="lang-en">Why EduCapture for Instructors?</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <h4 class="lang-nl">Objectieve Beoordeling</h4>
+                    <h4 class="lang-en">Objective Assessment</h4>
+                    <p class="lang-nl">Geen subjectieve beoordelingen meer - AI analyseert het rijgedrag van je leerlingen op basis van concrete data en feiten.</p>
+                    <p class="lang-en">No more subjective assessments - AI analyzes your students' driving behavior based on concrete data and facts.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4 class="lang-nl">Sneller Leren</h4>
+                    <h4 class="lang-en">Faster Learning</h4>
+                    <p class="lang-nl">Door gerichte feedback en herhaling van belangrijke momenten leren je leerlingen efficiënter en slagen ze sneller.</p>
+                    <p class="lang-en">Through targeted feedback and repetition of key moments, your students learn more efficiently and pass faster.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4 class="lang-nl">Privacy Beschermd</h4>
+                    <h4 class="lang-en">Privacy Protected</h4>
+                    <p class="lang-nl">Alle opnames zijn privacy-vriendelijk - alleen beelden van buiten de auto, geen audio of binnenbeelden.</p>
+                    <p class="lang-en">All recordings are privacy-friendly - only images from outside the car, no audio or interior footage.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4 class="lang-nl">24/7 Toegang</h4>
+                    <h4 class="lang-en">24/7 Access</h4>
+                    <p class="lang-nl">Je leerlingen kunnen hun lessen en voortgang bekijken wanneer het hen uitkomt, niet alleen tijdens de rijles.</p>
+                    <p class="lang-en">Your students can view their lessons and progress whenever it suits them, not just during driving lessons.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4 class="lang-nl">Persoonlijke Aanpak</h4>
+                    <h4 class="lang-en">Personalized Approach</h4>
+                    <p class="lang-nl">AI past zich aan de leerstijl van elke leerling aan en geeft feedback die specifiek voor hen relevant is.</p>
+                    <p class="lang-en">AI adapts to each student's learning style and provides feedback that is specifically relevant to them.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4 class="lang-nl">Examenvoorbereiding</h4>
+                    <h4 class="lang-en">Exam Preparation</h4>
+                    <p class="lang-nl">Perfect voorbereid op rijexamens met gedetailleerde analyses van alle rijvaardigheden van je leerlingen.</p>
+                    <p class="lang-en">Perfectly prepared for driving exams with detailed analyses of all driving skills of your students.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="lang-nl">Klaar om te Starten?</h2>
+            <h2 class="lang-en">Ready to Get Started?</h2>
+            <p class="lang-nl">
+                Log in op je instructeur dashboard en ontdek hoe AI-technologie je rijopleiding kan transformeren. 
+                Beheer je leerlingen, analyseer hun voortgang en geef objectieve feedback om sneller te laten slagen.
+            </p>
+            <p class="lang-en">
+                Log in to your instructor dashboard and discover how AI technology can transform your driving instruction. 
+                Manage your students, analyze their progress, and provide objective feedback to help them pass faster.
+            </p>
+            
+            <div class="highlight-box">
+                <h3 class="lang-nl">Jouw Dashboard Wacht</h3>
+                <h3 class="lang-en">Your Dashboard Awaits</h3>
+                <p class="lang-nl">
+                    Alle functies zijn beschikbaar in je persoonlijke instructeur dashboard. Log in om toegang te krijgen tot 
+                    video analyses, AI feedback, voortgangsrapporten en les hoogtepunten van al je leerlingen.
+                </p>
+                <p class="lang-en">
+                    All features are available in your personal instructor dashboard. Log in to access 
+                    video analyses, AI feedback, progress reports, and lesson highlights from all your students.
+                </p>
+            </div>
+            
+            <a href="https://instructoreducapture.vercel.app/login" target="_blank" class="button button-large">
+                <span class="lang-nl">Log in op je Dashboard</span>
+                <span class="lang-en">Log in to Your Dashboard</span>
+            </a>
+            
+            <p style="margin-top: 30px; opacity: 0.9; font-size: 1rem;" class="lang-nl">
+                Veilig en privacy-beschermd - alleen jij en je leerlingen hebben toegang
+            </p>
+            <p style="margin-top: 30px; opacity: 0.9; font-size: 1rem;" class="lang-en">
+                Secure and privacy-protected - only you and your students have access
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="lang-nl">Tel:</span>
+                    <span class="lang-en">Tel:</span>
+                    <span>+31 6 80227810</span>
+                </div>
+                <div class="contact-item">
+                    <span class="lang-nl">Email:</span>
+                    <span class="lang-en">Email:</span>
+                    <span>hello@educapture.io</span>
+                </div>
+                <div class="contact-item">
+                    <span class="lang-nl">Web:</span>
+                    <span class="lang-en">Web:</span>
+                    <span>https://educapture.io</span>
+                </div>
+            </div>
+            
+            <div class="footer-info">
+                <p class="lang-nl">&copy; 2025 EduCapture B.V. i.o. | Een onderneming van J.Greenfields B.V. J.Greenfields B.V. | KVK: 97941468 | Pinksterbloem 35, 8607 DW Sneek | Contact: hello@educapture.io +31 6 80227810 | https://educapture.io</p>
+                <p class="lang-en">&copy; 2025 EduCapture B.V. i.o. | A company of J.Greenfields B.V. J.Greenfields B.V. | KVK: 97941468 | Pinksterbloem 35, 8607 DW Sneek | Contact: hello@educapture.io +31 6 80227810 | https://educapture.io</p>
+                <p style="margin-top: 10px;"><a href="/privacy-terms.html" style="color: #00b498; text-decoration: none;">Privacy Policy & Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleLanguage() {
+            const body = document.body;
+            const toggle = document.querySelector('.language-toggle');
+            
+            if (body.classList.contains('lang-en')) {
+                body.classList.remove('lang-en');
+                toggle.textContent = 'EN';
+                document.documentElement.lang = 'nl';
+            } else {
+                body.classList.add('lang-en');
+                toggle.textContent = 'NL';
+                document.documentElement.lang = 'en';
+            }
+        }
+    </script>
+</body>
+</html> 

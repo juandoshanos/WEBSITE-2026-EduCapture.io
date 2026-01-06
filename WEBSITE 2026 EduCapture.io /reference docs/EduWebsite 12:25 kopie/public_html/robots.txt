@@ -1,0 +1,22 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://educapture.io/sitemap.xml
+
+# Prevent access to admin areas
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /dashboard/
+
+# Prevent indexing of search results and temporary content
+Disallow: /search
+Disallow: /temp/
+Disallow: /tmp/
+
+# Allow crawling of static assets
+Allow: /static/
+Allow: /images/
+Allow: /assets/
+Allow: /favicon.ico

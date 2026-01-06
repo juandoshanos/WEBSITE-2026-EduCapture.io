@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Primary Meta Tags -->
+    <title>EduCapture | Innovatieve AI-Technologie voor Rijscholen</title>
+    <meta name="title" content="EduCapture | Innovatieve AI-Technologie voor Rijscholen">
+    <meta name="description" content="Verbeter je rijlessen met EduCapture's AI-technologie. Verhoog slagingspercentages, verminder werkdruk en geef betere feedback. De eerste AVG-proof oplossing voor rijscholen in Nederland.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="rijschool software, AI rijles, rijinstructeur technologie, rijles innovatie, AVG-proof rijschool, educapture, rijles monitoring">
+    <meta name="author" content="EduCapture">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://educapture.io/">
+    <meta property="og:title" content="EduCapture | Innovatieve AI-Technologie voor Rijscholen">
+    <meta property="og:description" content="Verbeter je rijlessen met EduCapture's AI-technologie. Verhoog slagingspercentages, verminder werkdruk en geef betere feedback. De eerste AVG-proof oplossing voor rijscholen in Nederland.">
+    <meta property="og:image" content="https://educapture.io/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://educapture.io/">
+    <meta property="twitter:title" content="EduCapture | Innovatieve AI-Technologie voor Rijscholen">
+    <meta property="twitter:description" content="Verbeter je rijlessen met EduCapture's AI-technologie. Verhoog slagingspercentages, verminder werkdruk en geef betere feedback. De eerste AVG-proof oplossing voor rijscholen in Nederland.">
+    <meta property="twitter:image" content="https://educapture.io/twitter-image.png">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#2563eb">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://educapture.io/">
+    
+    <!-- Preconnect to External Resources -->
+    <link rel="preconnect" href="https://calendly.com">
+    <link rel="dns-prefetch" href="https://calendly.com">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "EduCapture",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "description": "EduCapture is een innovatieve AI-technologie voor rijscholen die helpt bij het verbeteren van rijlessen en het verhogen van slagingspercentages.",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "EduCapture",
+        "url": "https://educapture.io"
+      }
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-D089bDlzNew.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DZIYRPkk.css?v=2">
+    
+    <!-- Nexa Fonts -->
+    <style>
+      @font-face {
+        font-family: 'Nexa';
+        src: url('/Nexa Bold.otf') format('opentype');
+        font-weight: bold;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: 'Nexa';
+        src: url('/Nexa Light.otf') format('opentype');
+        font-weight: 300;
+        font-style: normal;
+      }
+      
+      /* Hamburger Menu Styles */
+      .hamburger-menu {
+        position: fixed !important;
+        top: 20px !important;
+        right: 20px !important;
+        z-index: 1000 !important;
+        cursor: pointer !important;
+        background: #003333 !important;
+        border-radius: 8px !important;
+        padding: 12px !important;
+        backdrop-filter: blur(10px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        transition: all 0.3s ease !important;
+      }
+      
+      .hamburger-menu:hover {
+        background: #004444 !important;
+        transform: scale(1.05) !important;
+      }
+      
+      .hamburger-icon {
+        width: 24px;
+        height: 18px;
+        position: relative;
+        transform: rotate(0deg);
+        transition: .5s ease-in-out;
+      }
+      
+      .hamburger-icon span {
+        display: block;
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        background: white;
+        border-radius: 3px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: .25s ease-in-out;
+      }
+      
+      .hamburger-icon span:nth-child(1) {
+        top: 0px;
+      }
+      
+      .hamburger-icon span:nth-child(2) {
+        top: 7px;
+      }
+      
+      .hamburger-icon span:nth-child(3) {
+        top: 14px;
+      }
+      
+      .hamburger-menu.active .hamburger-icon span:nth-child(1) {
+        top: 7px;
+        transform: rotate(135deg);
+      }
+      
+      .hamburger-menu.active .hamburger-icon span:nth-child(2) {
+        opacity: 0;
+        left: -60px;
+      }
+      
+      .hamburger-menu.active .hamburger-icon span:nth-child(3) {
+        top: 7px;
+        transform: rotate(-135deg);
+      }
+      
+      .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .menu-content {
+        background: white;
+        border-radius: 16px;
+        padding: 40px;
+        max-width: 400px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        transform: translateY(20px);
+        transition: transform 0.3s ease;
+      }
+      
+      .menu-overlay.active .menu-content {
+        transform: translateY(0);
+      }
+      
+      .menu-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #1e413c;
+        margin-bottom: 30px;
+        font-family: 'Nexa', sans-serif;
+      }
+      
+      .menu-links {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      
+      .menu-link {
+        display: block;
+        padding: 16px 24px;
+        background: #00b498;
+        color: white;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: bold;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        font-family: 'Nexa', sans-serif;
+      }
+      
+      .menu-link:hover {
+        background: #009a7f;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 180, 152, 0.3);
+      }
+      
+      .menu-link.secondary {
+        background: #f8f9fa;
+        color: #1e413c;
+        border: 2px solid #e9ecef;
+        font-weight: 300;
+      }
+      
+      .menu-link.secondary:hover {
+        background: #e9ecef;
+        border-color: #1e413c;
+      }
+      
+      @media (max-width: 768px) {
+        .hamburger-menu {
+          top: 15px;
+          right: 15px;
+          padding: 10px;
+        }
+        
+
+        
+        .menu-content {
+          padding: 30px 20px;
+        }
+        
+        .menu-title {
+          font-size: 20px;
+        }
+      }
+      
+      /* Global Nexa Font Application */
+      * {
+        font-family: 'Nexa', sans-serif !important;
+      }
+      
+      /* Increase body text size for better readability - exclude header and footer */
+      main p, 
+      .text-gray-600:not(header *):not(footer *), 
+      .text-gray-300:not(header *):not(footer *), 
+      .text-black-600:not(header *):not(footer *), 
+      .text-black-300:not(header *):not(footer *),
+      .text-black-400:not(header *):not(footer *),
+      .text-gray-800:not(header *):not(footer *),
+      .text-gray-900:not(header *):not(footer *),
+      .text-black-900:not(header *):not(footer *),
+      .leading-relaxed:not(header *):not(footer *),
+      .section-subtitle:not(header *):not(footer *) {
+        font-size: 1.2em !important;
+        line-height: 1.7 !important;
+      }
+      
+      /* Make hero subtitle larger for better readability */
+      .hero-subtitle {
+        font-size: 1.4em !important;
+        line-height: 1.8 !important;
+      }
+      
+      /* Make section descriptions and subtexts larger - exclude header and footer */
+      .section-subtitle:not(header *):not(footer *),
+      .hero-subtitle:not(header *):not(footer *),
+      .text-gray-600:not(header *):not(footer *),
+      .text-gray-300:not(header *):not(footer *),
+      .text-black-600:not(header *):not(footer *),
+      .text-black-300:not(header *):not(footer *),
+      .text-black-400:not(header *):not(footer *),
+      .text-gray-800:not(header *):not(footer *),
+      .text-gray-900:not(header *):not(footer *),
+      .text-black-900:not(header *):not(footer *) {
+        font-size: 1.3em !important;
+        line-height: 1.8 !important;
+      }
+      
+      /* Remove excessive capitalization from testimonial text */
+      .text-white.leading-relaxed:not(header *):not(footer *) {
+        text-transform: lowercase !important;
+        font-variant: normal !important;
+      }
+      
+      /* Capitalize only the first letter of the entire text */
+      .text-white.leading-relaxed:not(header *):not(footer *)::first-letter {
+        text-transform: uppercase !important;
+      }
+      
+      /* Footer styling for full width and smaller text */
+      footer {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      footer * {
+        max-width: none !important;
+      }
+      
+      footer .container,
+      footer .max-w-\\[800px\\],
+      footer .max-w-\\[1200px\\],
+      footer .max-w-\\[1400px\\],
+      footer .max-w-screen-xl,
+      footer .max-w-screen-lg,
+      footer .max-w-screen-md,
+      footer .text-center,
+      footer .md\\:text-left,
+      footer .footer-info,
+      footer .footer-info p {
+        width: 100% !important;
+        max-width: none !important;
+        text-align: center !important;
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      /* Logo replacement for header */
+      .logo-container {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+      }
+      
+      .logo-icon {
+        width: 32px !important;
+        height: 32px !important;
+        flex-shrink: 0 !important;
+      }
+      
+
+      
+      /* Target common header elements that might contain "EduCapture" */
+      header h1,
+      header h2,
+      header h3,
+      .header h1,
+      .header h2,
+      .header h3,
+      .navbar-brand,
+      .logo,
+      [class*="logo"],
+      [class*="brand"] {
+        display: none !important;
+      }
+      
+      /* Add logo to header */
+      header::before,
+      .header::before,
+      .navbar::before,
+      [class*="header"]::before {
+        content: '' !important;
+        display: none !important;
+      }
+      
+      /* Alternative approach - inject logo via CSS */
+      .educapture-logo {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        text-decoration: none !important;
+        color: inherit !important;
+      }
+      
+      .educapture-logo::before {
+        content: '' !important;
+        width: 32px !important;
+        height: 32px !important;
+        background-image: url('/educapture-logo.svg') !important;
+        background-size: contain !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        flex-shrink: 0 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+      <div class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay">
+      <div class="menu-content">
+        <h2 class="menu-title">Menu</h2>
+        <div class="menu-links">
+          <a href="/demopage/" class="menu-link">Demo</a>
+          <a href="/contact/" class="menu-link">Contact</a>
+          <a href="/student/" class="menu-link secondary">Student Portal</a>
+          <a href="/" class="menu-link secondary">Terug naar Home</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cookie Consent Popup -->
+    <div id="cookieConsent" style="
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1e413c;
+      color: white;
+      padding: 16px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      z-index: 9998;
+      max-width: 320px;
+      font-family: 'Nexa', sans-serif;
+      display: none;
+    ">
+      <p style="margin: 0 0 12px 0; font-size: 14px; line-height: 1.5;">
+        Deze website gebruikt cookies voor een optimale ervaring. 
+        <a href="/privacy-terms.html" style="color: #00b498; text-decoration: underline;">Meer info</a>
+      </p>
+      <button id="acceptCookies" style="
+        background: #00b498;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 14px;
+        transition: background 0.3s;
+      ">Akkoord</button>
+    </div>
+    
+    <script>
+      // Cookie consent
+      (function() {
+        if (!localStorage.getItem('cookieConsent')) {
+          document.getElementById('cookieConsent').style.display = 'block';
+        }
+        document.getElementById('acceptCookies').addEventListener('click', function() {
+          localStorage.setItem('cookieConsent', 'true');
+          document.getElementById('cookieConsent').style.display = 'none';
+        });
+      })();
+    </script>
+
+    <div id="root"></div>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR-GA4-ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'YOUR-GA4-ID');
+    </script>
+    
+    <!-- Calendly Booking Redirect Script -->
+    <script>
+      // Override the booking widget to redirect directly to Calendly
+      window.openCalendlyBooking = function() {
+        window.open('https://calendly.com/educapture/kennismaking', '_blank');
+      };
+      
+      // Listen for clicks on booking buttons and redirect
+      document.addEventListener('click', function(e) {
+        if (e.target && e.target.textContent && e.target.textContent.includes('Plan Een Meeting')) {
+          e.preventDefault();
+          window.openCalendlyBooking();
+        }
+      });
+    </script>
+    
+    <!-- Hamburger Menu Script -->
+    <script>
+      const hamburgerMenu = document.getElementById('hamburgerMenu');
+      const menuOverlay = document.getElementById('menuOverlay');
+      
+      hamburgerMenu.addEventListener('click', function() {
+        hamburgerMenu.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+      });
+      
+      // Close menu when clicking on overlay
+      menuOverlay.addEventListener('click', function(e) {
+        if (e.target === menuOverlay) {
+          hamburgerMenu.classList.remove('active');
+          menuOverlay.classList.remove('active');
+        }
+      });
+      
+      // Close menu when pressing Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          hamburgerMenu.classList.remove('active');
+          menuOverlay.classList.remove('active');
+        }
+      });
+    </script>
+    
+    <!-- Footer Update Script -->
+    <script>
+      // Function to update footer content
+      function updateFooter() {
+        const footer = document.querySelector('footer');
+        if (footer) {
+          // Update contact information - try multiple selectors
+          const contactItems = footer.querySelectorAll('.contact-item span, footer span');
+          if (contactItems.length >= 6) {
+            // Look for phone number pattern and update
+            contactItems.forEach((item, index) => {
+              if (item.textContent.includes('+31 6 80227810')) {
+                item.textContent = '+31 6 80227810';
+              }
+              if (item.textContent.includes('hello@educapture.io')) {
+                item.textContent = 'hello@educapture.io';
+              }
+              if (item.textContent.includes('www.educapture.io')) {
+                item.textContent = 'https://educapture.io';
+              }
+            });
+          }
+          
+          // Update footer info - try multiple selectors
+          const footerInfo = footer.querySelector('.footer-info p, footer p');
+          if (footerInfo && !footerInfo.innerHTML.includes('EduCapture B.V. i.o.')) {
+            footerInfo.innerHTML = '&copy; 2025 EduCapture B.V. i.o. | Een onderneming van J.Greenfields B.V. J.Greenfields B.V. | KVK: 97941468 | Pinksterbloem 35, 8607 DW Sneek | Contact: hello@educapture.io +31 6 80227810 | https://educapture.io<br><a href="/privacy-terms.html" style="color: #00b498; text-decoration: none; margin-top: 10px; display: inline-block;">Privacy Policy & Terms of Service</a>';
+          }
+        }
+      }
+      
+      // More aggressive approach - override React's rendering
+      function forceUpdateFooter() {
+        const footer = document.querySelector('footer');
+        if (footer) {
+          // Remove "Een product van Upsurging" text
+          const allP = footer.querySelectorAll('p');
+          allP.forEach(p => {
+            if (p.textContent && p.textContent.includes('Een product van Upsurging')) {
+              p.remove();
+            }
+          });
+          
+          // Remove the BTW/KvK section
+          const btwSection = footer.querySelector('.space-y-2');
+          if (btwSection) {
+            btwSection.remove();
+          }
+          
+          // Remove the Contact heading section
+          const contactHeading = footer.querySelector('h3.text-white.font-display.font-bold.text-lg.mb-4');
+          if (contactHeading) {
+            contactHeading.remove();
+          }
+          
+          // Remove container elements that constrain width
+          const containers = footer.querySelectorAll('.container, .max-w-\\[800px\\], .max-w-\\[1200px\\], .max-w-\\[1400px\\], .max-w-screen-xl, .max-w-screen-lg, .max-w-screen-md');
+          containers.forEach(container => {
+            // Remove max-width constraints and center alignment
+            container.style.maxWidth = 'none';
+            container.style.width = '100%';
+            container.style.margin = '0';
+            container.style.padding = '0';
+            container.style.textAlign = 'center';
+          });
+          
+          // Completely remove the text-center div that's causing issues
+          const textCenterDivs = footer.querySelectorAll('.text-center.md\\:text-left, .text-center');
+          textCenterDivs.forEach(div => {
+            // Move all children to the parent and remove the div
+            while (div.firstChild) {
+              div.parentNode.insertBefore(div.firstChild, div);
+            }
+            div.remove();
+          });
+          
+          // Remove "Een product van Upsurging" text
+          const allTextNodes = footer.querySelectorAll('*');
+          allTextNodes.forEach(element => {
+            if (element.textContent && element.textContent.includes('   ')) {
+              element.textContent = element.textContent.replace('   ', '');
+            }
+          });
+          
+          // Also remove the flex container with the logo and "Een product van Upsurging"
+          const flexContainers = footer.querySelectorAll('.flex.flex-col.items-center.md\\:items-start');
+          flexContainers.forEach(container => {
+            if (container.textContent && container.textContent.includes('   ')) {
+              container.remove();
+            }
+          });
+          
+          // Replace the entire footer content if needed
+          const footerInfo = footer.querySelector('.footer-info p, footer p');
+          if (footerInfo && !footerInfo.innerHTML.includes('EduCapture B.V. i.o.')) {
+            footerInfo.innerHTML = '&copy; 2025 EduCapture B.V. i.o. | Een onderneming van J.Greenfields B.V. | KVK: 97941468 | Pinksterbloem 35, 8607 DW Sneek | Contact: hello@educapture.io +31 6 80227810 | https://educapture.io<br><a href="/privacy-terms.html" style="color: #00b498; text-decoration: none; margin-top: 10px; display: inline-block;">Privacy Policy & Terms of Service</a>';
+            footerInfo.style.width = '100%';
+            footerInfo.style.textAlign = 'center';
+            footerInfo.style.fontSize = '0.8rem';
+            footerInfo.style.lineHeight = '1.4';
+          }
+          
+          // Update contact items
+          const spans = footer.querySelectorAll('span');
+          spans.forEach(span => {
+            if (span.textContent.includes('+31 6 80227810')) {
+              span.textContent = '+31 6 80227810';
+            }
+            if (span.textContent.includes('hello@educapture.io')) {
+              span.textContent = 'hello@educapture.io';
+            }
+            if (span.textContent.includes('www.educapture.io')) {
+              span.textContent = 'https://educapture.io';
+            }
+          });
+        }
+      }
+      
+      // Use MutationObserver to watch for DOM changes
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'childList' || mutation.type === 'subtree') {
+            const footer = document.querySelector('footer');
+            if (footer) {
+              setTimeout(forceUpdateFooter, 100);
+            }
+          }
+        });
+      });
+      
+      // Start observing when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+        
+        // Try to update immediately and at intervals
+        forceUpdateFooter();
+        setTimeout(forceUpdateFooter, 500);
+        setTimeout(forceUpdateFooter, 1000);
+        setTimeout(forceUpdateFooter, 2000);
+        setTimeout(forceUpdateFooter, 3000);
+        setTimeout(forceUpdateFooter, 5000);
+      });
+      
+      // Aggressive periodic updates
+      setInterval(forceUpdateFooter, 1000);
+      
+      // Also try when window loads
+      window.addEventListener('load', function() {
+        setTimeout(forceUpdateFooter, 1000);
+        setTimeout(forceUpdateFooter, 3000);
+      });
+    </script>
+  </body>
+</html>

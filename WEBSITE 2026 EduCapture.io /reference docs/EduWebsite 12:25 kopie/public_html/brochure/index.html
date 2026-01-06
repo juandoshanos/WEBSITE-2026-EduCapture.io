@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduCapture Demo Slides - Probleem/Oplossing Framework</title>
+    <style>
+        @font-face {
+            font-family: 'Nexa';
+            src: url('Nexa Light.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Nexa';
+            src: url('Nexa Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        
+        :root {
+            --primary: #00b498;
+            --dark: #1e413c;
+            --white: #ffffff;
+            --black: #000000;
+            --gray: #f5f5f5;
+            --red: #ff6b6b;
+            --yellow: #ffa500;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nexa', sans-serif;
+            background-color: var(--dark);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            background-color: var(--white);
+            position: relative;
+            page-break-after: always;
+        }
+        
+        .slide-dark {
+            background-color: var(--dark);
+            color: var(--white);
+        }
+        
+        .slide-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        h1 {
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            line-height: 1.1;
+        }
+        
+        h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .slide-dark h3 {
+            color: var(--primary);
+        }
+        
+        .logo {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+        }
+        
+        .problem-solution-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+            max-width: 1400px;
+            margin-top: 40px;
+        }
+        
+        .problem-box {
+            background-color: #ffe6e6;
+            border: 3px solid var(--red);
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+        }
+        
+        .solution-box {
+            background-color: #e6f7f3;
+            border: 3px solid var(--primary);
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+        }
+        
+        .box-header {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .problem-box .box-header {
+            color: var(--red);
+        }
+        
+        .solution-box .box-header {
+            color: var(--primary);
+        }
+        
+        .content-box {
+            background-color: var(--gray);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .content-box h3 {
+            margin-bottom: 20px;
+        }
+        
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .bullet-list li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+        
+        .bullet-list li::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            font-size: 24px;
+            color: var(--red);
+        }
+        
+        .success-list li::before {
+            content: "✓";
+            color: var(--primary);
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 60px;
+        }
+        
+        .metric-box {
+            background-color: var(--white);
+            color: var(--dark);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .slide-dark .metric-box {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .metric-number {
+            font-size: 64px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .metric-label {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 40px;
+            border-collapse: collapse;
+            background-color: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 30px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .comparison-table td {
+            padding: 25px;
+            font-size: 20px;
+            border-bottom: 2px solid var(--gray);
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .old-way {
+            background-color: #ffe6e6;
+        }
+        
+        .new-way {
+            background-color: #e6f7f3;
+        }
+        
+        .highlight-box {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 60px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+        
+        .highlight-box h2 {
+            margin-bottom: 20px;
+        }
+        
+        .highlight-box p {
+            font-size: 24px;
+            line-height: 1.6;
+        }
+        
+        .roi-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .roi-item {
+            text-align: center;
+        }
+        
+        .roi-arrow {
+            font-size: 48px;
+            color: var(--primary);
+        }
+        
+        .arrow-connector {
+            font-size: 60px;
+            color: var(--primary);
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .feature-highlight {
+            background-color: var(--yellow);
+            color: var(--dark);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        
+        @media print {
+            .slide {
+                height: 297mm;
+                width: 210mm;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+        <a href="/" class="button" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; font-size: 0.9rem; text-decoration: none; border-radius: 25px;">← Terug naar Home</a>
+    </div>
+
+    <!-- Slide 1: Titel Slide -->
+    <div class="slide slide-dark">
+        <h1>Het Probleem & De Oplossing</h1>
+        <h2 style="color: #00b498;">Hoe EduCapture Elke Uitdaging Transformeert</h2>
+    </div>
+
+    <!-- Slide 2: Marketing Probleem & Oplossing -->
+    <div class="slide">
+        <h2>Marketing Perspectief</h2>
+        <div class="problem-solution-grid">
+            <div class="problem-box">
+                <div class="box-header">✗ Het Probleem</div>
+                <ul class="bullet-list">
+                    <li>Vertrouwen op mond-tot-mond</li>
+                    <li>Minimale marketinginspanningen</li>
+                    <li>Hopen dat leerlingen verschijnen</li>
+                    <li>Geen systematische aanpak</li>
+                    <li>Concurreren op prijs</li>
+                </ul>
+            </div>
+            <div class="solution-box">
+                <div class="box-header">✓ EduCapture Oplossing</div>
+                <ul class="bullet-list success-list">
+                    <li><span class="feature-highlight">NIEUW!</span> EduCapture Studenten Platform</li>
+                    <li>Wij werven actief leerlingen VOOR u</li>
+                    <li>Extra stroom van innovatie-minded leerlingen</li>
+                    <li>Professionele landelijke campagnes</li>
+                    <li>Concurreer op KWALITEIT, niet prijs</li>
+                </ul>
+                <p style="margin-top: 20px; font-weight: bold; color: var(--primary);">
+                    "Wij brengen de leerlingen naar U!"
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Service Probleem & Oplossing -->
+    <div class="slide">
+        <h2>Service Perspectief</h2>
+        <div class="problem-solution-grid">
+            <div class="problem-box">
+                <div class="box-header">✗ Het Probleem</div>
+                <ul class="bullet-list">
+                    <li>Geen meetbare voortgang</li>
+                    <li>Tussentijdse toets vervallen</li>
+                    <li>Leerlingen rijden minder snel af</li>
+                    <li>Onzekerheid wanneer examenklaar</li>
+                    <li>Subjectief "gevoel" vs data</li>
+                </ul>
+            </div>
+            <div class="solution-box">
+                <div class="box-header">✓ EduCapture Oplossing</div>
+                <ul class="bullet-list success-list">
+                    <li><span class="feature-highlight">AI ANALYSE!</span> Objectieve voortgang</li>
+                    <li>AI-tussentijdse toets volledig geautomatiseerd</li>
+                    <li>CBR-proof examenvoorbereiding</li>
+                    <li>3 lessen minder per leerling</li>
+                    <li>Real-time dashboards voor data-inzicht</li>
+                </ul>
+                <p style="margin-top: 20px; font-weight: bold; color: var(--primary);">
+                    "AI-technologie die de tussentijdse toets overbodig maakt!"
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Businessmodel Probleem & Oplossing -->
+    <div class="slide">
+        <h2>Businessmodel Perspectief</h2>
+        <div class="problem-solution-grid">
+            <div class="problem-box">
+                <div class="box-header">✗ Het Probleem</div>
+                <ul class="bullet-list">
+                    <li>Verkoop pakket vooraf - dat is het!</li>
+                    <li>Geen extra inkomsten</li>
+                    <li>Druk om lessen te haasten</li>
+                    <li>Altijd nieuwe leerlingen najagen</li>
+                    <li>Hamsterrad van acquisitie</li>
+                </ul>
+            </div>
+            <div class="solution-box">
+                <div class="box-header">✓ EduCapture Oplossing</div>
+                <ul class="bullet-list success-list">
+                    <li><span class="feature-highlight">€44/LEERLING!</span> Commissie-inkomen</li>
+                    <li>Extra inkomstenstromen</li>
+                    <li>7+ meer leerlingen/jaar capaciteit</li>
+                    <li>€17.500 extra uit efficiëntie</li>
+                    <li>Focus op kwaliteit, niet snelheid</li>
+                </ul>
+                <p style="margin-top: 20px; font-weight: bold; color: var(--primary);">
+                    "Maak van elke leerling terugkerende inkomsten!"
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: De Complete Oplossing -->
+    <div class="slide slide-primary">
+        <h1>Het EduCapture Ecosysteem</h1>
+        <div style="background-color: var(--dark); padding: 40px; border-radius: 20px; margin-top: 40px;">
+            <h3 style="color: white; margin-bottom: 30px;">Drie Pijlers van Groei</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                <div style="text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 20px;">1</div>
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">EDUCAPTURE STUDENTEN PLATFORM</h4>
+                    <p style="color: white;">Wij brengen gekwalificeerde leerlingen direct naar u</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 20px;">2</div>
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">AI TECHNOLOGIE</h4>
+                    <p style="color: white;">Geavanceerde AI-analyse & tussentijdse toets systeem</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 20px;">3</div>
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">INKOMSTENSTROMEN</h4>
+                    <p style="color: white;">Meerdere manieren om inkomen te laten groeien</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Belangrijke Cijfers met Context -->
+    <div class="slide slide-dark">
+        <h2>De Cijfers Die Tellen</h2>
+        <div class="metric-grid">
+            <div class="metric-box">
+                <span class="metric-number">PLUS</span>
+                <span class="metric-label">Nieuwe Leerlingenstroom<br>via Studenten Platform</span>
+            </div>
+            <div class="metric-box">
+                <span class="metric-number">7+</span>
+                <span class="metric-label">Extra Leerlingen<br>Capaciteit/Jaar</span>
+            </div>
+            <div class="metric-box">
+                <span class="metric-number">€2K+</span>
+                <span class="metric-label">Commissie Inkomen<br>Per Jaar</span>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <p style="font-size: 24px; color: var(--primary);">
+                "Ons AI-systeem neemt de tussentijdse toets volledig uit handen!"
+            </p>
+        </div>
+    </div>
+
+    <!-- Slide 7: Voor vs Na met Oplossingen -->
+    <div class="slide">
+        <h2>Uw Transformatie Reis</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Uitdaging</th>
+                    <th>Zonder EduCapture</th>
+                    <th>Met EduCapture</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Leerling Werving</strong></td>
+                    <td class="old-way">Hoop & mond-tot-mond</td>
+                    <td class="new-way">Studenten Platform + AI-werving</td>
+                </tr>
+                <tr>
+                    <td><strong>Les Efficiëntie</strong></td>
+                    <td class="old-way">30+ lessen gemiddeld</td>
+                    <td class="new-way">27 lessen (3 minder!)</td>
+                </tr>
+                <tr>
+                    <td><strong>Voortgang Tracking</strong></td>
+                    <td class="old-way">Subjectief gokken</td>
+                    <td class="new-way">AI-tussentijdse toets systeem</td>
+                </tr>
+                <tr>
+                    <td><strong>Omzet Model</strong></td>
+                    <td class="old-way">Alleen eenmalig pakket</td>
+                    <td class="new-way">Pakket + €44/leerling commissie</td>
+                </tr>
+                <tr>
+                    <td><strong>Jaarlijkse Capaciteit</strong></td>
+                    <td class="old-way">60 leerlingen</td>
+                    <td class="new-way">67+ leerlingen (zelfde uren!)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Slide 8: ROI met Volledig Beeld -->
+    <div class="slide">
+        <h2>Uw Complete ROI Plaatje</h2>
+        <div class="roi-visual">
+            <div class="roi-item">
+                <h3>Investering</h3>
+                <div class="metric-number" style="color: var(--red);">€2.570</div>
+                <p>Eerste Jaar Totaal</p>
+            </div>
+            <div class="roi-arrow">→</div>
+            <div class="roi-item">
+                <h3>Terugverdienen</h3>
+                <div class="metric-number" style="color: var(--primary);">1 Leerling</div>
+                <p>Via Studenten Platform<br>= Investering Terug</p>
+            </div>
+        </div>
+        <div class="arrow-connector">+</div>
+        <div style="text-align: center;">
+            <div class="highlight-box" style="background-color: var(--yellow); color: var(--dark); max-width: 800px;">
+                <h3 style="color: var(--dark); margin-bottom: 20px;">PLUS: Nieuwe Stroom van Leerlingen</h3>
+                <p style="color: var(--dark);">Via het EduCapture Studenten Platform - een extra bron van leerlingen die actief kiezen voor innovatie!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: TTT Oplossing -->
+    <div class="slide">
+        <h2>De Tussentijdse Toets (TTT) Oplossing</h2>
+        <div class="highlight-box" style="background-color: var(--gray); color: var(--dark); border: 3px solid var(--primary);">
+            <h3 style="color: var(--dark); margin-bottom: 30px;">Ons AI-Systeem Neemt de TTT Volledig Over</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: left;">
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">Wat de TTT deed:</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0;">✓ Objectieve beoordeling rijvaardigheid</li>
+                        <li style="padding: 8px 0;">✓ Halverwege de opleiding feedback</li>
+                        <li style="padding: 8px 0;">✓ Onafhankelijke kwaliteitscheck</li>
+                        <li style="padding: 8px 0;">✓ Zekerheid voor examendeelname</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">Wat EduCapture AI doet:</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0;">✓ ELKE les objectief geanalyseerd</li>
+                        <li style="padding: 8px 0;">✓ Continue AI-feedback (niet 1x)</li>
+                        <li style="padding: 8px 0;">✓ 100% data-gedreven beoordeling</li>
+                        <li style="padding: 8px 0;">✓ Exacte examenklaar-indicator</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="margin-top: 30px; padding: 20px; background-color: var(--primary); color: white; border-radius: 10px;">
+                <p style="font-size: 20px; margin: 0;">
+                    <strong>Het resultaat:</strong> Leerlingen rijden weer in één keer af, 
+                    zoals vroeger met de TTT - maar dan beter!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Call to Action -->
+    <div class="slide slide-primary">
+        <h1>Sluit je aan bij de Revolutie</h1>
+        <div class="highlight-box" style="background-color: var(--dark);">
+            <h2>Drie Manieren Waarop We Uw School Transformeren</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 30px;">
+                <div>
+                    <h3 style="color: var(--primary);">Marketing</h3>
+                    <p>Wij brengen leerlingen naar U</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--primary);">Service</h3>
+                    <p>AI-tussentijdse toets systeem</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--primary);">Omzet</h3>
+                    <p>Meerdere inkomstenstromen</p>
+                </div>
+            </div>
+            <p style="margin-top: 40px; font-size: 28px;">
+                Wees één van de eerste 30 scholen die de toekomst leiden!
+            </p>
+        </div>
+    </div>
+</body>
+</html>
