@@ -1,0 +1,79 @@
+═══════════════════════════════════════════════════════════
+  EDUCAPTURE STAKEHOLDER DEMO - QUICK CHEAT SHEET
+═══════════════════════════════════════════════════════════
+
+🚀 TO START (BEFORE PRESENTATION):
+
+1. Open Terminal
+2. Run this ONE command:
+
+   cd /Users/juansebastian/educapture-ai-pipeline/frontend && ./start-demo.sh
+
+3. Wait for "ready" message
+4. Open browser to: http://localhost:8080/demo
+5. TEST: Click through all 3 videos
+6. KEEP browser and terminal open
+
+
+═══════════════════════════════════════════════════════════
+
+📺 WHAT YOU'LL SEE:
+
+- Video 1: Right of Way Excellence
+- Video 2: Station Queue Management  
+- Video 3: Priority Intersection Handling
+
+Each with AI feedback, ratings, and categories
+
+
+═══════════════════════════════════════════════════════════
+
+🎤 DURING PRESENTATION:
+
+1. Share screen showing browser at /demo
+2. Walk through each video using Next button
+3. Highlight the AI feedback below each video
+4. Show the stats sidebar (3 highlights, 4.7 stars)
+5. Emphasize processing speed (2.3 seconds)
+
+
+═══════════════════════════════════════════════════════════
+
+🔧 IF SOMETHING BREAKS:
+
+Problem: Videos won't play
+Fix: Hard refresh browser (Cmd+Shift+R)
+
+Problem: Port in use
+Fix: lsof -ti:8080 | xargs kill -9
+     Then restart: npm run dev
+
+Problem: Demo page not loading
+Fix: Go to http://localhost:8080 instead
+     Then: Student → View Highlights
+
+
+═══════════════════════════════════════════════════════════
+
+✅ CHECKLIST BEFORE DEMO:
+
+□ Terminal open with server running
+□ Browser open to localhost:8080/demo
+□ Tested all 3 videos
+□ Screen sharing ready
+□ Volume turned on
+□ Full screen mode ready (F11)
+
+
+═══════════════════════════════════════════════════════════
+
+🎯 THE URL TO REMEMBER:
+
+http://localhost:8080/demo
+
+(or just /demo if already on localhost:8080)
+
+
+═══════════════════════════════════════════════════════════
+
+GOOD LUCK! 🚀

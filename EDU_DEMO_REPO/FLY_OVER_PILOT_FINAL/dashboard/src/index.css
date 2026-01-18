@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Fly-Over Brand Colors */
+    --background: 0 0% 100%;
+    /* White */
+    --foreground: 0 0% 20%;
+    /* Dark Gray #333333 */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+
+    /* Primary: Fly-Over Navy Blue #003366 */
+    --primary: 210 100% 20%;
+    --primary-foreground: 0 0% 100%;
+    /* White text on Navy */
+    --primary-glow: 210 80% 30%;
+    /* Lighter navy for glow */
+
+    /* Secondary: Light Gray #e0e8f0 */
+    --secondary: 210 33% 91%;
+    --secondary-foreground: 210 100% 20%;
+    /* Navy text on Light Gray */
+
+    --muted: 210 33% 96%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 210 33% 91%;
+    /* Light Gray */
+    --accent-foreground: 210 100% 20%;
+
+    /* Status Colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 95% 50%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 33% 85%;
+    --input: 210 33% 85%;
+    --ring: 210 100% 20%;
+
+    /* Design System Enhancements */
+    --radius: 0.5rem;
+    /* Clean professional radius */
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(210 100% 30%));
+    --gradient-card: linear-gradient(135deg, hsl(var(--card)), hsl(210 33% 98%));
+    /* --gradient-dark: linear-gradient(135deg, hsl(180 100% 10%), hsl(170 37% 19%)); */
+
+    /* Shadows */
+    --shadow-card: 0 4px 20px -4px hsl(var(--primary) / 0.1);
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.15);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark Mode (Navy Backgrounds) */
+    --background: 210 100% 15%;
+    /* Darker Navy */
+    --foreground: 0 0% 100%;
+
+    --card: 210 100% 20%;
+    /* Navy */
+    --card-foreground: 0 0% 100%;
+
+    --popover: 210 100% 20%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 210 100% 20%;
+    /* Still Navy, maybe lighter? Keep consistent for brand */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 33% 25%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 33% 25%;
+    --muted-foreground: 210 20% 65%;
+
+    --accent: 210 33% 25%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 33% 30%;
+    --input: 210 33% 30%;
+    --ring: 210 100% 20%;
+
+    --sidebar-background: 210 100% 15%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 210 100% 20%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 33% 20%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 210 33% 20%;
+    --sidebar-ring: 210 100% 20%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
